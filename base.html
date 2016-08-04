@@ -1,0 +1,60 @@
+<html>
+ <head>
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+ </head>
+ <style>
+{% block style %}{% endblock style %}
+
+ </style>
+<body>
+
+
+{% if messages %}
+  <div class = "messages">
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if messages.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}
+    </li>
+    {% endfor %}
+
+</ul>
+   </div>
+
+{% endif %}
+
+<div class = "container">
+{% block content %}
+
+<h1>{{ title }} </h1>
+{{% for obj in object_list %}}
+
+
+<a href='{% url "detail" id=obj.id %}'>{{ obj.title }}</a><br/>
+{{ obj.body }}<br/>
+
+{{ obj.created_date }}<br/>
+{{ obj.updated_date }}<br/>
+{{ obj.id }}<br/>
+
+{% endfor %}
+
+
+
+{% endblock content %}
+
+
+
+</div>
+
+
+
+
+
+</body>
